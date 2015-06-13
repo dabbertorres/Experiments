@@ -5,7 +5,15 @@ class Test
 {
 	public:
 		Test(int t)
-		:	X(x),
+		:	X(	[this]() -> const int&
+				{
+					return this->x;
+				},
+				[this](int t) -> int&
+				{
+					this->x = t;
+					return this->x;
+				}),
 			x(t)
 		{}
 
