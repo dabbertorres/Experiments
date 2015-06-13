@@ -17,7 +17,7 @@ class Test
 			x(t)
 		{}
 
-		swift::Property<int> X;
+		Property<int> X;
 
 	private:
 		int x;
