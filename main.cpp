@@ -1,15 +1,16 @@
 #include "Property.hpp"
+#include <iostream>
 
 class Test
 {
 	public:
 		Test(int t)
-		:	x(t),
-			X(x)
+		:	X(x),
+			x(t)
 		{}
-		
+
 		swift::Property<int> X;
-		
+
 	private:
 		int x;
 };
@@ -17,10 +18,12 @@ class Test
 int main()
 {
 	Test test(5);
-	
+
+	std::cout << "X: " << test.X() << '\n';
+
 	test.X = 7;
-	
-	test.X();
-	
+
+	std::cout << "X: " << test.X() << '\n';
+
 	return 0;
 }
