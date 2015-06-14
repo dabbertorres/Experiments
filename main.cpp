@@ -1,4 +1,5 @@
 #include "Property.hpp"
+#include "DynArray.hpp"
 #include <iostream>
 
 class Test
@@ -32,6 +33,8 @@ int main()
 	test.X = 7;
 
 	std::cout << "X: " << test.X() << '\n';
+
+	DynArray<int> array;
 
 	return 0;
 }
