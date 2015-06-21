@@ -18,7 +18,7 @@ class DynArray
 {
 	public:
 		// aliases
-		using ReallocCallback = std::function<void(T* const, std::size_t)>;
+		using ReallocCallback = std::function<void(const T const*, std::size_t)>;
 		using allocator_type = Alloc;
 		using value_type = typename Alloc::value_type;
 		using reference = typename Alloc::reference;
