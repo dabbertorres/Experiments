@@ -34,8 +34,8 @@ class QuadTree
 
 		void add(const Rectangle& rect);
 
-		const Objects& objects();
-		const Children& children();
+		const Objects& objects() const;
+		const Children& children() const;
 
 	private:
 		Corner index(const Rectangle& rect);
