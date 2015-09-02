@@ -16,17 +16,6 @@ struct Rectangle
 class QuadTree
 {
 	public:
-		using ObjectsArray = std::vector<std::reference_wrapper<const Rectangle>>;
-
-		QuadTree();
-		QuadTree(std::size_t w, std::size_t h);
-		QuadTree(std::size_t tlx, std::size_t tly, std::size_t w, std::size_t h);
-
-		void add(const Rectangle& rect);
-
-		ObjectsArray& objects();
-
-	private:
 		enum class Corner : std::size_t
 		{
 			TopLeft,
@@ -35,7 +24,20 @@ class QuadTree
 			BotLeft,
 			Parent,
 		};
+		
+		using ObjectsArray = std::vector<std::reference_wrapper<const Rectangle>>;
+		using Children = std::map<Corner, QuadTree>;
 
+		QuadTree();
+		QuadTree(std::size_t w, std::size_t h);
+		QuadTree(std::size_t tlx, std::size_t tly, std::size_t w, std::size_t h);
+
+		void add(const Rectangle& rect);
+
+		const ObjectsArray& objects();
+		const Children& children();
+
+	private:
 		Corner index(const Rectangle& rect);
 		void split();
 
@@ -46,8 +48,7 @@ class QuadTree
 		std::size_t width;
 		std::size_t height;
 
-		// 0 = top left, 1 = top right, 2 = bottom right, 3 = bottom left
-		std::map<Corner, QuadTree> children;
+		Children childrenMap;
 
 		ObjectsArray objectsArr;
 };
