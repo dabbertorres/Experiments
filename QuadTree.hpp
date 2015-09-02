@@ -1,6 +1,7 @@
 #ifndef QUAD_TREE_HPP
 #define QUAD_TREE_HPP
 
+#include <functional>
 #include <map>
 #include <vector>
 
@@ -15,13 +16,18 @@ struct Rectangle
 class QuadTree
 {
 	public:
+		using ObjectsArray = std::vector<std::reference_wrapper<const Rectangle>>;
+
+		QuadTree();
+		QuadTree(std::size_t w, std::size_t h);
 		QuadTree(std::size_t tlx, std::size_t tly, std::size_t w, std::size_t h);
-		~QuadTree();
 
 		void add(const Rectangle& rect);
 
+		ObjectsArray& objects();
+
 	private:
-		enum class Corner
+		enum class Corner : std::size_t
 		{
 			TopLeft,
 			TopRight,
@@ -43,7 +49,7 @@ class QuadTree
 		// 0 = top left, 1 = top right, 2 = bottom right, 3 = bottom left
 		std::map<Corner, QuadTree> children;
 
-		std::vector<const Rectangle&> objects;
+		ObjectsArray objectsArr;
 };
 
 #endif
