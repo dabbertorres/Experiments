@@ -25,7 +25,7 @@ class QuadTree
 			Parent,
 		};
 		
-		using ObjectsArray = std::vector<std::reference_wrapper<const Rectangle>>;
+		using Objects = std::vector<std::reference_wrapper<const Rectangle>>;
 		using Children = std::map<Corner, QuadTree>;
 
 		QuadTree();
@@ -34,7 +34,7 @@ class QuadTree
 
 		void add(const Rectangle& rect);
 
-		const ObjectsArray& objects();
+		const Objects& objects();
 		const Children& children();
 
 	private:
@@ -50,7 +50,7 @@ class QuadTree
 
 		Children childrenMap;
 
-		ObjectsArray objectsArr;
+		Objects objectsArr;
 };
 
 #endif
