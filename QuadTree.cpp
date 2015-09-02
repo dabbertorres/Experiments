@@ -32,9 +32,14 @@ void QuadTree::add(const Rectangle& rect)
 	}
 }
 
-QuadTree::ObjectsArray& QuadTree::objects()
+const QuadTree::Objects& QuadTree::objects() const
 {
 	return objectsArr;
+}
+
+const QuadTree::Children& QuadTree::children() const
+{
+	return childrenMap;
 }
 
 QuadTree::Corner QuadTree::index(const Rectangle& rect)
@@ -91,7 +96,7 @@ void QuadTree::split()
 	children.emplace(Corner::BotLeft, QuadTree(0, heigthHalf, widthHalf, heigthHalf));
 	children.emplace(Corner::BotRight, QuadTree(widthHalf, heigthHalf, widthHalf, heigthHalf));
 
-	ObjectsArray temp;
+	Objects temp;
 	for(auto it = objectsArr.begin(); it != objectsArr.end(); ++it)
 	{
 		Corner placeIn = index(*it);
