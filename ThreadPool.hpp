@@ -89,6 +89,9 @@ namespace cc
 	:	threadsWaiting(0),
 		terminate(false)
 	{
+		// keep from reallocating
+		threads.reserve(threadCount);
+
 		for(auto i = 0u; i < threadCount; ++i)
 			threads.emplace_back(task, this);
 	}
