@@ -35,6 +35,19 @@ int main()
 	std::cout << "X: " << test.X() << '\n';
 
 	DynArray<int> array;
+	
+	static_if(std::is_same<int, char>{}).then([&]()
+	{
+		std::cout << "true!\n";
+	})
+	.static_else_if(std::is_same<int, short>{}).then([&]()
+	{
+		std::cout << "else if true!\n";
+	})
+	.static_else([&]()
+	{
+		std::cout << "false!\n";
+	});
 
 	return 0;
 }
