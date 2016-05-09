@@ -50,18 +50,18 @@ namespace dbr
 			// FNV-1a hash (values for "prime" and "offset" from: http://isthe.com/chongo/tech/comp/fnv/#FNV-param)
 			// (2 power of x) == 2 << (x - 1)
 	
-			// using architecture detection from nothings' stb libraries (www.github.com/nothings/stb)
-	#if defined(__x86_64__) || defined(_M_X64)
-			// 64 bit
-			constexpr std::size_t prime = (2u << 39) + (2u << 7) + 0xb3u;
-			constexpr std::size_t offset = 14695981039346656037u;
-	#elif defined(__i386) || defined(_M_IX86)
-			// 32 bit
-			constexpr std::size_t prime = (2u << 23) + (2u << 7) + 0x93u;
-			constexpr std::size_t offset = 2166136261u;
-	#else
-	#	error This FNV-1a hash is not implemented for non 32-bit or 64-bit architectures (Or, do you have weird compiler settings for some reason?)
-	#endif
+// using architecture detection from nothings' stb libraries (www.github.com/nothings/stb)
+#if defined(__x86_64__) || defined(_M_X64)
+		// 64 bit
+		constexpr std::size_t prime = (2u << 39) + (2u << 7) + 0xb3u;
+		constexpr std::size_t offset = 14695981039346656037u;
+#elif defined(__i386) || defined(_M_IX86)
+		// 32 bit
+		constexpr std::size_t prime = (2u << 23) + (2u << 7) + 0x93u;
+		constexpr std::size_t offset = 2166136261u;
+#else
+#	error This FNV-1a hash is not implemented for non 32-bit or 64-bit architectures (Or, do you have weird compiler settings for some reason?)
+#endif
 	
 			auto* ptr = bytes;
 			auto* end = ptr + length;
