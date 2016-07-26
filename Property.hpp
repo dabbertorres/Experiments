@@ -11,13 +11,10 @@ class Property
 		~Property() = default;
 
 		// getter
-		const T& operator ()() const;
+		operator const T&() const;
 
 		// setter
 		T& operator =(const T&);
-
-		void setGetter(const Getter& get);
-		void setSetter(const Setter& set);
 
 	private:
 		Getter getter;
@@ -31,7 +28,7 @@ Property<T>::Property(const Getter& get, const Setter& set)
 {}
 
 template<typename T>
-const T& Property<T>::operator ()() const
+Property<T>::operator const T&() const
 {
 	return getter();
 }
@@ -40,16 +37,4 @@ template<typename T>
 T& Property<T>::operator =(const T& t)
 {
 	return setter(t);
-}
-
-template<typename T>
-void Property<T>::setGetter(const Getter& get)
-{
-	getter = get;
-}
-
-template<typename T>
-void Property<T>::setSetter(const Setter& set)
-{
-	setter = set;
 }
